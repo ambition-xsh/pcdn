@@ -103,17 +103,22 @@ export default function DeviceBinding() {
     setFeedback({ type: null, message: "" })
     // 调起绑定接口
     try {
-      POST(bindBySnAndKey, { sn, key }).then((result: any) => {
+      POST(bindBySnAndKey, { sn_code:sn, key }).then((result: any) => {
         console.log(result.data);
-        if (result.success) {
+        if (result.msg === 'OK') {
           setFeedback({
             type: "success",
             message: t("Binding Success"),
           })
           // 更新设备状态
-          GET(`${queryBySn}?sn_code=${sn}`, '').then((newStatus: any) => {
-            setDeviceStatus({ ...newStatus.data, sn })
-            console.log(newStatus);
+          GET(`${queryBySn}?sn_code=${sn}`, '').then((status: any) => {
+            if (status.data) {
+              setDeviceStatus({ ...status.data, sn, isOnline: status.data.online, isBound: status.data.uuid == '' ? false : true })
+            } else {
+              setDeviceStatus({
+                isOnline: 0, isBound: false, isActivated: false, sn, node_id: ''
+              })
+            }
           })
         } else {
           setFeedback({
