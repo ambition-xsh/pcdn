@@ -85,16 +85,21 @@ export default function DeviceBinding() {
   }
 
   useEffect(() => {
-    GET(`${queryBySn}?sn_code=${sn}`, '').then((status: any) => {
-      if (status.data) {
-        setDeviceStatus({ ...status.data, sn, isOnline: status.data.online, isBound: status.data.uuid == '' ? false : true })
-      } else {
-        setDeviceStatus({
-          isOnline: 0, isBound: false, isActivated: false, sn, node_id: ''
-        })
-      }
+    try {
+      GET(`${queryBySn}?sn_code=${sn}`, '').then((status: any) => {
+        if (status.data) {
+          setDeviceStatus({ ...status.data, sn, isOnline: status.data.online, isBound: status.data.uuid == '' ? false : true })
+        } else {
+          setDeviceStatus({
+            isOnline: 0, isBound: false, isActivated: false, sn, node_id: ''
+          })
+        }
+      })
+    } catch (error) {
+      console.log(error)
+    } finally {
       setIsChecking(false)
-    })
+    }
   }, [sn])
 
   const handleBind = async (e: React.FormEvent) => {
@@ -103,7 +108,7 @@ export default function DeviceBinding() {
     setFeedback({ type: null, message: "" })
     // 调起绑定接口
     try {
-      POST(bindBySnAndKey, { sn_code:sn, key }).then((result: any) => {
+      POST(bindBySnAndKey, { sn_code: sn, key }).then((result: any) => {
         console.log(result.data);
         if (result.msg === 'OK') {
           setFeedback({
