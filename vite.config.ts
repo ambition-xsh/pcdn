@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base:'/pcdn/iot/android/',
+  base:'./',
   plugins: [react()],
   css: {
     // css模块化配置项

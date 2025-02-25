@@ -309,7 +309,7 @@ export default function DeviceBinding() {
           className="text-center"
         >
           <div className="flex justify-center mb-4">
-            <img src="/src/assets/logo.png" alt="Titan Network" width={48} height={48} />
+            <img src="../logo.png" alt="Titan Network" width={48} height={48} />
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">Titan PCDN</h1>
           <p className="text-white/60">{t("Device Binding System")}</p>
