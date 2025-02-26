@@ -20,14 +20,14 @@ export default defineConfig({
       }
     }
   },
-  server: {
-    proxy: {
-      '/api': {
-        target: 'https://www-test4.titannet.io',//测试服
-        // target:'https://test4-network.titannet.io/api/network',//正式服
-        changeOrigin: true,
-        // rewrite: (path) => path.replace(/^\/api/, '')
-      }
-    }
-  }
+  // server: {
+  //   proxy: {
+  //     '/api': {
+  //       // target: 'https://www-test4.titannet.io',//测试服
+  //       target:'https://test4-network.titannet.io',//正式服
+  //       changeOrigin: true,
+  //       // rewrite: (path) => path.replace(/^\/api/, '')
+  //     }
+  //   }
+  // }
 })

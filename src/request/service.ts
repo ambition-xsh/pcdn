@@ -10,7 +10,7 @@ import axios  from "axios";
  
 //3创建axios实例
 let httpClient = axios.create({
-  // baseURL:"https://www-test4.titannet.io/api/network/",
+  baseURL:"https://test4-network.titannet.io",
   timeout:6000,
   // withCredentials:true
 })

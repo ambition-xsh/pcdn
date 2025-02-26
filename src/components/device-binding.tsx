@@ -67,7 +67,7 @@ export default function DeviceBinding() {
       // 根据接口处理 setDeviceStatus
       GET(`${queryBySn}?sn_code=${sn}`, '').then((status: any) => {
         if (status.data) {
-          setDeviceStatus({ ...status.data, sn, isOnline: status.data.online, isBound: status.data.uuid == '' ? false : true })
+          setDeviceStatus({ ...status.data, sn, isOnline: status.data.status, isBound: status.data.uuid == '' ? false : true })
         } else {
           setDeviceStatus({
             isOnline: 0, isBound: false, isActivated: false, sn, node_id: ''
@@ -88,7 +88,7 @@ export default function DeviceBinding() {
     try {
       GET(`${queryBySn}?sn_code=${sn}`, '').then((status: any) => {
         if (status.data) {
-          setDeviceStatus({ ...status.data, sn, isOnline: status.data.online, isBound: status.data.uuid == '' ? false : true })
+          setDeviceStatus({ ...status.data, sn, isOnline: status.data.status, isBound: status.data.uuid == '' ? false : true })
         } else {
           setDeviceStatus({
             isOnline: 0, isBound: false, isActivated: false, sn, node_id: ''
@@ -118,7 +118,7 @@ export default function DeviceBinding() {
           // 更新设备状态
           GET(`${queryBySn}?sn_code=${sn}`, '').then((status: any) => {
             if (status.data) {
-              setDeviceStatus({ ...status.data, sn, isOnline: status.data.online, isBound: status.data.uuid == '' ? false : true })
+              setDeviceStatus({ ...status.data, sn, isOnline: status.data.status, isBound: status.data.uuid == '' ? false : true })
             } else {
               setDeviceStatus({
                 isOnline: 0, isBound: false, isActivated: false, sn, node_id: ''
